@@ -37,36 +37,36 @@ const PortfolioItem = ({ project, index }: { project: any, index: number }) => {
     >
       <div className="overflow-hidden bg-architecture-silver/10 relative aspect-square md:aspect-auto md:h-[500px]">
         {/* Parallax Image */}
-        <motion.img 
-          src={project.image} 
+        <motion.img
+          src={project.image}
           alt={project.title}
           style={{ scale: 1.2 }}
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 1 }}
           className="w-full h-full object-cover grayscale-[40%] group-hover:grayscale-0 transition-all duration-700"
         />
-        
+
         {/* Technical Mask Overlay (Webflow Vibe) */}
         <div className="absolute inset-0 bg-architecture-charcoal/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 overflow-hidden flex flex-col justify-end p-24">
-           <div className="flex justify-between items-center text-white mb-4">
-              <span className="text-[10px] uppercase tracking-[0.4em] font-medium">Project Specification</span>
-              <div className="flex gap-2">
-                 {[1,2,3].map(i => <div key={i} className="w-1 h-1 bg-white rounded-full opacity-50" />)}
-              </div>
-           </div>
-           
-           <div className="h-[2px] w-0 bg-architecture-gold group-hover:w-full transition-all duration-700 delay-100" />
-           
-           <div className="mt-8 flex gap-32">
-              <div className="flex flex-col">
-                 <span className="text-[8px] uppercase text-white/50 mb-1">Status</span>
-                 <span className="text-[10px] uppercase text-white">Completed</span>
-              </div>
-              <div className="flex flex-col">
-                 <span className="text-[8px] uppercase text-white/50 mb-1">Client ID</span>
-                 <span className="text-[10px] uppercase text-white">R-{project.id}092</span>
-              </div>
-           </div>
+          <div className="flex justify-between items-center text-white mb-4">
+            <span className="text-[10px] uppercase tracking-[0.4em] font-medium">Project Specification</span>
+            <div className="flex gap-2">
+              {[1, 2, 3].map(i => <div key={i} className="w-1 h-1 bg-white rounded-full opacity-50" />)}
+            </div>
+          </div>
+
+          <div className="h-[2px] w-0 bg-architecture-gold group-hover:w-full transition-all duration-700 delay-100" />
+
+          <div className="mt-8 flex gap-32">
+            <div className="flex flex-col">
+              <span className="text-[8px] uppercase text-white/50 mb-1">Status</span>
+              <span className="text-[10px] uppercase text-white">Completed</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[8px] uppercase text-white/50 mb-1">Client ID</span>
+              <span className="text-[10px] uppercase text-white">R-{project.id}092</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -100,7 +100,7 @@ const Portfolio: React.FC = () => {
       <div className="section-container relative z-10">
         <div className="mb-48 border-l-8 border-architecture-gold pl-16">
           <span className="text-architecture-gold font-display font-medium tracking-[0.5em] uppercase text-xs mb-4 block">Selected Works</span>
-          <h2 className="text-5xl md:text-[6rem] leading-[0.9] font-black uppercase tracking-tighter">
+          <h2 className="text-4xl md:text-[6rem] leading-[0.9] font-black uppercase tracking-tighter">
             Architectural <br />
             <span className="italic font-light font-display lowercase opacity-50">Impact</span>
           </h2>

@@ -61,7 +61,7 @@ const Services: React.FC = () => {
               <span className="text-architecture-gold font-display font-medium tracking-[0.4em] uppercase text-xs">01 / Services</span>
               <div className="w-12 h-[1px] bg-architecture-gold/30" />
             </div>
-            <h2 className="text-5xl md:text-[5rem] leading-[0.95] mb-8 font-black tracking-tighter uppercase">
+            <h2 className="text-4xl md:text-[5rem] leading-[0.95] mb-8 font-black tracking-tighter uppercase">
               Foundational <br />
               <span className="text-architecture-gold italic font-display font-light normal-case">Architectural</span> Solutions
             </h2>
