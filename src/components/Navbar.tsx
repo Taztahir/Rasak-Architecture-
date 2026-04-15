@@ -68,7 +68,7 @@ const Navbar: React.FC = () => {
               {item.name}
             </a>
           ))}
-          <button className="btn-primary py-5 px-24">Get Entry</button>
+          <a href="#contact" className="btn-primary py-5 px-24 inline-block">Get Entry</a>
         </div>
 
         {/* Mobile Toggle */}
@@ -125,7 +125,7 @@ const Navbar: React.FC = () => {
               </div>
 
               <motion.div variants={itemVariants} className="mt-auto pb-12">
-                <button className="btn-primary w-full py-16 text-sm">Start A Project</button>
+                <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="btn-primary w-full py-16 text-sm inline-block text-center">Start A Project</a>
                 <div className="mt-12 flex justify-between items-center text-[10px] uppercase tracking-widest text-architecture-charcoal/30">
                   <span>Architecture & Design</span>
                   <div className="w-12 h-[1px] bg-architecture-silver/20" />
@@ -136,7 +136,7 @@ const Navbar: React.FC = () => {
               {/* Decorative Vertical Text */}
               <div className="absolute right-4 bottom-48 rotate-90 origin-bottom-right opacity-5 pointer-events-none">
                 <span className="text-8xl font-display font-bold whitespace-nowrap uppercase tracking-tighter">
-                  RASAK ARCHITECTURE
+                  JR DESIGN AND BUILD
                 </span>
               </div>
             </motion.div>

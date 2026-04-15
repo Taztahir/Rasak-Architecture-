@@ -4,7 +4,7 @@ import Building3D from './Building3D';
 
 const Hero: React.FC = () => {
   const containerRef = useRef<HTMLElement>(null);
-  
+
   // Webflow-style Parallax & Scroll effects
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -19,28 +19,28 @@ const Hero: React.FC = () => {
   const headingWords = "Defining Space, Creating Legacy.".split(" ");
 
   return (
-    <section 
-      id="home" 
+    <section
+      id="home"
       ref={containerRef}
       className="relative min-h-screen flex items-center pt-32 overflow-hidden bg-architecture-offwhite"
     >
       {/* Dynamic Background Technical Grid (Webflow Vibe) */}
-      <motion.div 
+      <motion.div
         style={{ y: y1 }}
         className="absolute top-0 right-0 w-2/3 h-2/3 opacity-[0.03] pointer-events-none"
       >
         <div className="absolute inset-0 border-l border-b border-architecture-charcoal/40" />
-        <div 
-          className="absolute inset-0" 
-          style={{ 
+        <div
+          className="absolute inset-0"
+          style={{
             backgroundImage: 'radial-gradient(circle at 1px 1px, #1A1A1A 1px, transparent 0)',
-            backgroundSize: '40px 40px' 
-          }} 
+            backgroundSize: '40px 40px'
+          }}
         />
       </motion.div>
 
       {/* Floating Background Label */}
-      <motion.div 
+      <motion.div
         style={{ x: y2, opacity: 0.02 }}
         className="absolute top-1/2 left-0 -translate-y-1/2 -rotate-90 origin-left hidden lg:block"
       >
@@ -50,7 +50,7 @@ const Hero: React.FC = () => {
       </motion.div>
 
       <div className="section-container relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-        
+
         {/* Text Content Area */}
         <div className="lg:col-span-7 relative">
           <motion.div
@@ -65,7 +65,7 @@ const Hero: React.FC = () => {
                 Excellence in Design
               </span>
             </div>
-            
+
             <h1 className="text-6xl md:text-8xl lg:text-[7.5rem] mb-12 leading-[0.9] font-bold tracking-tighter">
               {headingWords.map((word, i) => (
                 <motion.span
@@ -82,28 +82,28 @@ const Hero: React.FC = () => {
               ))}
             </h1>
 
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 1 }}
               className="text-xl text-architecture-charcoal/60 mb-16 max-w-xl leading-relaxed mt-8"
             >
-              Rasak Architecture brings technical precision to visionary design. We combine advanced documentation with structural implementation.
+              JR Design and Build  brings technical precision to visionary design. We combine advanced documentation with structural implementation.
             </motion.p>
-            
+
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.2 }}
               className="flex flex-col sm:flex-row flex-wrap gap-6 sm:gap-12 items-center lg:items-start"
             >
-              <button className="btn-primary w-full sm:w-auto group relative overflow-hidden">
+              <a href="#portfolio" className="btn-primary w-full sm:w-auto group relative overflow-hidden inline-block text-center">
                 <span className="relative z-10">Explore Portfolio</span>
                 <motion.div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform" />
-              </button>
-              <button className="text-architecture-charcoal font-display uppercase text-xs tracking-[0.3em] hover:text-architecture-gold transition-colors flex items-center gap-4 py-8">
+              </a>
+              <a href="#services" className="text-architecture-charcoal font-display uppercase text-xs tracking-[0.3em] hover:text-architecture-gold transition-colors flex items-center gap-4 py-8">
                 Our Services <div className="w-8 h-[1px] bg-architecture-gold" />
-              </button>
+              </a>
             </motion.div>
           </motion.div>
         </div>
@@ -124,30 +124,30 @@ const Hero: React.FC = () => {
                 <div className="w-4 h-[1px] bg-architecture-gold" />
               </div>
             </div>
-            
+
             <div className="w-full h-full relative z-10">
               <Building3D />
             </div>
 
             {/* Floating Technical Annotation (Webflow Style) */}
-            <motion.div 
+            <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               className="absolute -right-12 top-1/3 bg-architecture-charcoal text-white p-12 py-16 text-center z-20 min-w-[120px]"
             >
-               <div className="text-[10px] uppercase tracking-widest text-architecture-gold mb-1 font-bold">Concept A-12</div>
-               <div className="text-[8px] uppercase tracking-widest text-architecture-silver/50">Residential Dev.</div>
+              <div className="text-[10px] uppercase tracking-widest text-architecture-gold mb-1 font-bold">Concept A-12</div>
+              <div className="text-[8px] uppercase tracking-widest text-architecture-silver/50">Residential Dev.</div>
             </motion.div>
           </motion.div>
-          
+
           {/* Background Decorative Circles */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] border border-architecture-silver/5 rounded-full pointer-events-none" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] border border-architecture-silver/10 rounded-full pointer-events-none" />
         </div>
       </div>
-      
+
       {/* Scroll indicator (Webflow) */}
-      <motion.div 
+      <motion.div
         style={{ opacity: opacity }}
         className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 hidden lg:flex"
       >

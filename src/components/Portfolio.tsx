@@ -1,112 +1,199 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { X } from 'lucide-react';
 
 const projects = [
-  { id: 1, title: "Lumina Residential", location: "Lagos, NG", category: "Residential", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop", size: "lg" },
-  { id: 2, title: "Nexus Corporate Hub", location: "Abuja, NG", category: "Commercial", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop", size: "sm" },
-  { id: 3, title: "Emerald Villa Interior", location: "Ikoyi, NG", category: "Interior", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800&auto=format&fit=crop", size: "sm" },
-  { id: 4, title: "Skyline Manor", location: "Victoria Island, NG", category: "Residential", image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=800&auto=format&fit=crop", size: "lg" },
-  { id: 5, title: "The Atrium Mall", location: "Lekki, NG", category: "Commercial", image: "https://images.unsplash.com/photo-1519643381401-22c77e60520e?q=80&w=800&auto=format&fit=crop", size: "sm" },
-  { id: 6, title: "Oakwood Sustainable Home", location: "Enugu, NG", category: "Residential", image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=800&auto=format&fit=crop", size: "sm" },
-  { id: 7, title: "Opal Office Suites", location: "London, UK", category: "Commercial", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop", size: "lg" },
-  { id: 8, title: "Azure Coast Resort", location: "Accra, GH", category: "Hospitality", image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800&auto=format&fit=crop", size: "sm" },
-  { id: 9, title: "Modernist Retreat", location: "Ogun, NG", category: "Residential", image: "https://images.unsplash.com/photo-1628744276520-63300325856f?q=80&w=800&auto=format&fit=crop", size: "sm" },
-  { id: 10, title: "Tech Haven Interior", location: "Yaba, NG", category: "Interior", image: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800&auto=format&fit=crop", size: "lg" },
-  { id: 11, title: "Royal Palms Estate", location: "Ibadan, NG", category: "Residential", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop", size: "sm" },
-  { id: 12, title: "Crystal Plaza", location: "Port Harcourt, NG", category: "Commercial", image: "https://images.unsplash.com/photo-1554995207-c18c203602cb?q=80&w=800&auto=format&fit=crop", size: "sm" },
+  {
+    id: 1,
+    title: "Lumina Residential",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop",
+    relatedImages: [
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1600566753190-17f0bcd2a6c4?q=80&w=800&auto=format&fit=crop"
+    ]
+  },
+  {
+    id: 2,
+    title: "Nexus Corporate Hub",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop",
+    relatedImages: [
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop"
+    ]
+  },
+  {
+    id: 3,
+    title: "Emerald Villa Interior",
+    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800&auto=format&fit=crop",
+    relatedImages: [
+      "https://images.unsplash.com/photo-1616489953149-8ba6e4896081?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1556912177-3f988a53e34b?q=80&w=800&auto=format&fit=crop"
+    ]
+  },
+  {
+    id: 4,
+    title: "Skyline Manor",
+    image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=800&auto=format&fit=crop",
+    relatedImages: [
+      "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1600566752355-3979ff139cb4?q=80&w=800&auto=format&fit=crop"
+    ]
+  },
+  {
+    id: 5,
+    title: "The Atrium Mall",
+    image: "https://images.unsplash.com/photo-1519643381401-22c77e60520e?q=80&w=800&auto=format&fit=crop",
+    relatedImages: [
+      "https://images.unsplash.com/photo-1582037928769-181f2644ecb7?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1519643381401-22c77e60520e?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1565514020179-026b92b84bb6?q=80&w=800&auto=format&fit=crop"
+    ]
+  },
+  {
+    id: 6,
+    title: "Oakwood Sustainable Home",
+    image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=800&auto=format&fit=crop",
+    relatedImages: [
+      "https://images.unsplash.com/photo-1513584684374-8bdb74s9de06?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1505673539012-ee716fddb40e?q=80&w=800&auto=format&fit=crop"
+    ]
+  },
 ];
 
-const PortfolioItem = ({ project, index }: { project: any, index: number }) => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [0, index % 2 === 0 ? -100 : 100]);
-
+const PortfolioItem = ({ project, onOpen }: { project: any, onOpen: (p: any) => void }) => {
   return (
-    <motion.div
-      ref={ref}
-      style={{ y }}
-      initial={{ opacity: 0, scale: 0.95 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.8, ease: "circOut" }}
-      viewport={{ once: true, margin: "-100px" }}
-      className={`relative group ${project.size === 'lg' ? 'md:col-span-2' : 'md:col-span-1'}`}
+    <div
+      className="relative group cursor-pointer overflow-hidden bg-architecture-silver/10"
+      onClick={() => onOpen(project)}
     >
-      <div className="overflow-hidden bg-architecture-silver/10 relative aspect-square md:aspect-auto md:h-[500px]">
-        {/* Parallax Image */}
-        <motion.img
+      <div className="aspect-[4/5] w-full">
+        <img
           src={project.image}
           alt={project.title}
-          style={{ scale: 1.2 }}
-          whileHover={{ scale: 1.1 }}
-          transition={{ duration: 1 }}
-          className="w-full h-full object-cover grayscale-[40%] group-hover:grayscale-0 transition-all duration-700"
+          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300"
         />
-
-        {/* Technical Mask Overlay (Webflow Vibe) */}
-        <div className="absolute inset-0 bg-architecture-charcoal/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 overflow-hidden flex flex-col justify-end p-24">
-          <div className="flex justify-between items-center text-white mb-4">
-            <span className="text-[10px] uppercase tracking-[0.4em] font-medium">Project Specification</span>
-            <div className="flex gap-2">
-              {[1, 2, 3].map(i => <div key={i} className="w-1 h-1 bg-white rounded-full opacity-50" />)}
-            </div>
-          </div>
-
-          <div className="h-[2px] w-0 bg-architecture-gold group-hover:w-full transition-all duration-700 delay-100" />
-
-          <div className="mt-8 flex gap-32">
-            <div className="flex flex-col">
-              <span className="text-[8px] uppercase text-white/50 mb-1">Status</span>
-              <span className="text-[10px] uppercase text-white">Completed</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-[8px] uppercase text-white/50 mb-1">Client ID</span>
-              <span className="text-[10px] uppercase text-white">R-{project.id}092</span>
-            </div>
+        <div className="absolute inset-0 bg-architecture-charcoal/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+          <div className="px-6 py-2 border border-white text-white text-[10px] uppercase tracking-widest bg-black/20 backdrop-blur-sm">
+            View Project
           </div>
         </div>
       </div>
-
-    </motion.div>
+    </div>
   );
 };
 
 const Portfolio: React.FC = () => {
+  const [selectedProject, setSelectedProject] = useState<any>(null);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedProject]);
+
   return (
-    <section id="portfolio" className="bg-architecture-offwhite py-64 relative overflow-hidden">
+    <section id="portfolio" className="bg-architecture-offwhite py-32 md:py-64 relative overflow-hidden">
       {/* Background Decorative Title */}
-      <div className="absolute top-0 right-0 p-32 hidden lg:block opacity-[0.03]">
+      <div className="absolute top-0 right-0 p-32 hidden lg:block opacity-[0.03] select-none pointer-events-none">
         <h2 className="text-[15rem] font-display font-black leading-none uppercase tracking-tighter rotate-90 origin-top-right">
           Portfolio
         </h2>
       </div>
 
       <div className="section-container relative z-10">
-        <div className="mb-48 border-l-8 border-architecture-gold pl-16">
-          <span className="text-architecture-gold font-display font-medium tracking-[0.5em] uppercase text-xs mb-4 block">Selected Works</span>
-          <h2 className="text-4xl md:text-[6rem] leading-[0.9] font-black uppercase tracking-tighter">
+        <div className="mb-24 md:mb-48 border-l-8 border-architecture-gold pl-8 md:pl-16">
+          <span className="text-architecture-gold font-display font-medium tracking-[0.4em] uppercase text-[10px] md:text-xs mb-2 md:mb-4 block">Selected Works</span>
+          <h2 className="text-4xl md:text-7xl lg:text-[6rem] leading-[0.9] font-black uppercase tracking-tighter">
             Architectural <br />
             <span className="italic font-light font-display lowercase opacity-50">Impact</span>
           </h2>
         </div>
 
-        {/* Dynamic Grid (Webflow Arrangement) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-32">
-          {projects.map((project, index) => (
-            <PortfolioItem key={project.id} project={project} index={index} />
+        {/* Stable Grid (Graph) Layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+          {projects.map((project) => (
+            <PortfolioItem key={project.id} project={project} onOpen={setSelectedProject} />
           ))}
         </div>
 
-        <div className="mt-64 flex flex-col items-center">
-          <div className="w-[1px] h-32 bg-ar  chitecture-gold/30 mb-8" />
-          <button className="text-sm uppercase tracking-[0.5em] font-bold text-architecture-charcoal/40 hover:text-architecture-gold transition-colors">
+        <div className="mt-24 md:mt-48 flex flex-col items-center">
+          <div className="w-[1px] h-16 md:h-32 bg-architecture-gold/30 mb-8" />
+          <button className="text-xs md:text-sm uppercase tracking-[0.4em] font-bold text-architecture-charcoal/40 hover:text-architecture-gold transition-colors">
             Load Master Archive
           </button>
         </div>
       </div>
+
+      {/* Static Modal (No Animation) */}
+      {selectedProject && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 lg:p-24 bg-architecture-charcoal/90 backdrop-blur-md">
+          <div
+            className="absolute inset-0 cursor-pointer"
+            onClick={() => setSelectedProject(null)}
+          />
+
+          <div 
+            className="relative w-full max-w-7xl max-h-[85vh] overflow-y-auto bg-architecture-offwhite p-6 md:p-12 lg:p-20 shadow-2xl gallery-modal scrollbar-hide"
+            data-lenis-prevent
+          >
+            {/* Sticky Close Button */}
+            <div className="sticky top-0 right-0 z-[60] flex justify-end pb-4">
+              <button
+                onClick={() => setSelectedProject(null)}
+                className="bg-architecture-offwhite/80 backdrop-blur-md p-4 rounded-full text-architecture-charcoal hover:text-architecture-gold transition-all duration-300 shadow-lg border border-architecture-gold/20"
+              >
+                <X size={24} />
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+              {/* Main Image */}
+              <div className="lg:col-span-7">
+                <div className="aspect-[4/5] w-full overflow-hidden shadow-lg">
+                  <img
+                    src={selectedProject.image}
+                    alt={selectedProject.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+
+              {/* Related Images Sidebar */}
+              <div className="lg:col-span-5 flex flex-col">
+                <div className="mb-12">
+                  <div className="text-[10px] text-architecture-gold font-bold uppercase tracking-[0.4em] mb-4">Project detail</div>
+                  <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none mb-6">
+                    {selectedProject.title}
+                  </h3>
+                  <div className="w-16 h-[2px] bg-architecture-gold" />
+                </div>
+
+                <div className="grid grid-cols-1 gap-8 md:gap-12">
+                  {selectedProject.relatedImages.map((img: string, i: number) => (
+                    <div key={i} className="aspect-[16/9] w-full overflow-hidden bg-architecture-silver/10 shadow-md">
+                      <img
+                        src={img}
+                        alt={`Related detail ${i + 1}`}
+                        className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

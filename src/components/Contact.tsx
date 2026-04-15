@@ -30,25 +30,28 @@ const Contact: React.FC = () => {
 
             <div className="space-y-16">
               {[
-                { icon: <Mail size={18} />, label: "Email Inquiry", val: "hello@rasakarch.com" },
-                { icon: <Phone size={18} />, label: "Direct Line", val: "+234 (0) 800 ARCHITECT" },
-                { icon: <MapPin size={18} />, label: "Studio", val: "12 Architectural Way, Lekki, Lagos" }
+                { icon: <Mail size={18} />, label: "Email Inquiry", val: "Hardeybayurjnr31@gmail.com", href: "mailto:Hardeybayurjnr31@gmail.com" },
+                { icon: <Phone size={18} />, label: "Direct Line", val: "09066791399", href: "tel:09066791399" },
+                { icon: <MapPin size={18} />, label: "Studio", val: "Ojo Local Government Secretariat", href: "https://www.google.com/maps/search/Ojo+Local+Government+Secretariat+Olojo+Drive+Lagos+Nigeria" }
               ].map((item, i) => (
-                <motion.div
+                <motion.a
                   key={i}
+                  href={item.href}
+                  target={item.href.startsWith('http') ? "_blank" : undefined}
+                  rel={item.href.startsWith('http') ? "noopener noreferrer" : undefined}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.2 + i * 0.1 }}
-                  className="flex items-start gap-8 group cursor-none"
+                  className="flex items-start gap-8 group cursor-pointer"
                 >
                   <div className="w-12 h-12 border border-architecture-gold/20 flex items-center justify-center text-architecture-gold group-hover:bg-architecture-gold group-hover:text-white transition-all duration-500">
                     {item.icon}
                   </div>
                   <div>
                     <div className="text-[10px] uppercase tracking-widest text-architecture-charcoal/40 mb-1 font-bold">{item.label}</div>
-                    <div className="text-lg font-display uppercase tracking-wider">{item.val}</div>
+                    <div className="text-lg font-display uppercase tracking-wider group-hover:text-architecture-gold transition-colors">{item.val}</div>
                   </div>
-                </motion.div>
+                </motion.a>
               ))}
             </div>
 
