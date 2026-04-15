@@ -70,19 +70,6 @@ const PortfolioItem = ({ project, index }: { project: any, index: number }) => {
         </div>
       </div>
 
-      <div className="mt-8 flex justify-between items-start">
-        <div>
-          <h3 className="text-xl font-display font-bold uppercase tracking-widest group-hover:text-architecture-gold transition-colors">
-            {project.title}
-          </h3>
-          <p className="text-[10px] text-architecture-charcoal/40 uppercase tracking-[0.3em] mt-2">
-            {project.location} — {project.category}
-          </p>
-        </div>
-        <div className="text-[3rem] font-black text-architecture-silver/10 leading-none">
-          {project.id.toString().padStart(2, '0')}
-        </div>
-      </div>
     </motion.div>
   );
 };
@@ -114,7 +101,7 @@ const Portfolio: React.FC = () => {
         </div>
 
         <div className="mt-64 flex flex-col items-center">
-          <div className="w-[1px] h-32 bg-architecture-gold/30 mb-8" />
+          <div className="w-[1px] h-32 bg-ar  chitecture-gold/30 mb-8" />
           <button className="text-sm uppercase tracking-[0.5em] font-bold text-architecture-charcoal/40 hover:text-architecture-gold transition-colors">
             Load Master Archive
           </button>

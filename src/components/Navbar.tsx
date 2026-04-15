@@ -53,10 +53,10 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
         <div className="flex flex-col">
           <span className="font-display text-2xl font-bold tracking-[0.2em] uppercase text-architecture-charcoal">
-            Rasak
+            JR
           </span>
           <span className="text-[10px] tracking-[0.4em] uppercase text-architecture-gold -mt-1">
-            Architecture
+            Design and Build
           </span>
         </div>
 
