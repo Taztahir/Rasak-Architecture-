@@ -46,10 +46,11 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 w-full z-50 px-3 transition-all duration-500 ${isScrolled ? 'bg-white/90 backdrop-blur-md py-4 px-3 shadow-sm' : 'bg-transparent py-4'
-        }`}
-    >
+    <>
+      <nav
+        className={`fixed top-0 left-0 w-full z-50 px-3 transition-all duration-500 ${isScrolled ? 'bg-white/90 backdrop-blur-md py-4 px-3 shadow-sm' : 'bg-transparent py-4'
+          }`}
+      >
       <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
         <div className="flex flex-col">
           <span className="font-display text-2xl font-bold tracking-[0.2em] uppercase text-architecture-charcoal">
@@ -61,14 +62,14 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-48 items-center">
-          {navItems.map((item) => (
+        <div className="hidden md:flex space-x-8 lg:space-x-16 items-center">
+          {navItems.filter(i => i.name !== 'Contact').map((item) => (
             <a key={item.name} href={item.href} className="nav-link flex items-center gap-2 group">
               <span className="text-architecture-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300">/</span>
               {item.name}
             </a>
           ))}
-          <a href="#contact" className="btn-primary py-5 px-24 inline-block">Get Entry</a>
+          <a href="#contact" className="btn-primary py-5 px-24 inline-block">Contact</a>
         </div>
 
         {/* Mobile Toggle */}
@@ -80,11 +81,15 @@ const Navbar: React.FC = () => {
         </button>
       </div>
 
-      {/* Mobile Side Drawer */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <>
-            {/* Backdrop */}
+      {/* Architectural Grid Line Accent */}
+      <div className={`h-[1px] bg-architecture-gold/20 absolute bottom-0 left-0 transition-all duration-700 ${isScrolled ? 'w-full' : 'w-0'}`} />
+    </nav>
+
+    {/* Mobile Side Drawer */}
+    <AnimatePresence>
+      {isMobileMenuOpen && (
+        <>
+          {/* Backdrop */}
             <motion.div
               variants={backdropVariants}
               initial="closed"
@@ -143,10 +148,7 @@ const Navbar: React.FC = () => {
           </>
         )}
       </AnimatePresence>
-
-      {/* Architectural Grid Line Accent */}
-      <div className={`h-[1px] bg-architecture-gold/20 absolute bottom-0 left-0 transition-all duration-700 ${isScrolled ? 'w-full' : 'w-0'}`} />
-    </nav>
+    </>
   );
 };
 

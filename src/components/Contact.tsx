@@ -49,7 +49,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <div className="text-[10px] uppercase tracking-widest text-architecture-charcoal/40 mb-1 font-bold">{item.label}</div>
-                    <div className="text-lg font-display uppercase tracking-wider group-hover:text-architecture-gold transition-colors">{item.val}</div>
+                    <div className="text-sm font-display uppercase tracking-wider group-hover:text-architecture-gold transition-colors">{item.val}</div>
                   </div>
                 </motion.a>
               ))}

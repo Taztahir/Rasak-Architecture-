@@ -1,65 +1,86 @@
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
+import PortfolioImage from '../assets/Image1.jpeg'
+import PortfolioImage2 from '../assets/Image2.jpeg'
+import PortfolioImage3 from '../assets/Image3.jpeg'
+import PortfolioImage4 from '../assets/Image4.jpeg'
+import PortfolioImage5 from '../assets/Image5.jpeg'
+import PortfolioImage6 from '../assets/Image6.jpeg'
+import PortfolioImage7 from '../assets/Image7.jpeg'
+import PortfolioImage8 from '../assets/Image8.jpeg'
+import PortfolioImage9 from '../assets/Image9.jpeg'
+import PortfolioImage10 from '../assets/Image10.jpeg'
+import PortfolioImage11 from '../assets/Image11.jpeg'
+import PortfolioImage12 from '../assets/Image12.jpeg'
+import PortfolioImage13 from '../assets/Image13.jpeg'
+import PortfolioImage14 from '../assets/Image14.jpeg'
+import PortfolioImage15 from '../assets/Image15.jpeg'
+import PortfolioImage16 from '../assets/Image16.jpeg'
+import PortfolioImage17 from '../assets/Image17.jpeg'
+import PortfolioImage18 from '../assets/Image18.jpeg'
+import PortfolioImage19 from '../assets/Image19.jpeg'
+import PortfolioImage20 from '../assets/Image20.jpeg'
+import PortfolioImage21 from '../assets/Image21.jpeg'
 
 const projects = [
   {
     id: 1,
     title: "Lumina Residential",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop",
+    image: PortfolioImage,
     relatedImages: [
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1600566753190-17f0bcd2a6c4?q=80&w=800&auto=format&fit=crop"
+      PortfolioImage2,
+      PortfolioImage3,
+      PortfolioImage4
     ]
   },
   {
     id: 2,
     title: "Nexus Corporate Hub",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop",
+    image: PortfolioImage5,
     relatedImages: [
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop"
+      PortfolioImage6,
+      PortfolioImage7,
+      PortfolioImage8
     ]
   },
   {
     id: 3,
     title: "Emerald Villa Interior",
-    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800&auto=format&fit=crop",
+    image: PortfolioImage9,
     relatedImages: [
-      "https://images.unsplash.com/photo-1616489953149-8ba6e4896081?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1556912177-3f988a53e34b?q=80&w=800&auto=format&fit=crop"
+      PortfolioImage10,
+      // PortfolioImage11,
+      // PortfolioImage12
     ]
   },
   {
     id: 4,
     title: "Skyline Manor",
-    image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=800&auto=format&fit=crop",
+    image: PortfolioImage13,
     relatedImages: [
-      "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1600566752355-3979ff139cb4?q=80&w=800&auto=format&fit=crop"
+      PortfolioImage11,
+      PortfolioImage15,
+      PortfolioImage12
     ]
   },
   {
     id: 5,
     title: "The Atrium Mall",
-    image: "https://images.unsplash.com/photo-1519643381401-22c77e60520e?q=80&w=800&auto=format&fit=crop",
+    image: PortfolioImage17,
     relatedImages: [
-      "https://images.unsplash.com/photo-1582037928769-181f2644ecb7?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1519643381401-22c77e60520e?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1565514020179-026b92b84bb6?q=80&w=800&auto=format&fit=crop"
+      // PortfolioImage18,
+      PortfolioImage19,
+      // PortfolioImage20
     ]
   },
   {
     id: 6,
     title: "Oakwood Sustainable Home",
-    image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=800&auto=format&fit=crop",
+    image: PortfolioImage21,
     relatedImages: [
-      "https://images.unsplash.com/photo-1513584684374-8bdb74s9de06?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=80&w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1505673539012-ee716fddb40e?q=80&w=800&auto=format&fit=crop"
+      PortfolioImage18,
+      // PortfolioImage19,
+      PortfolioImage20
     ]
   },
 ];
@@ -67,14 +88,14 @@ const projects = [
 const PortfolioItem = ({ project, onOpen }: { project: any, onOpen: (p: any) => void }) => {
   return (
     <div
-      className="relative group cursor-pointer overflow-hidden bg-architecture-silver/10"
+      className="relative group cursor-pointer overflow-hidden"
       onClick={() => onOpen(project)}
     >
       <div className="aspect-[4/5] w-full">
         <img
           src={project.image}
           alt={project.title}
-          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300"
+          className="w-full h-full object-cover transition-all duration-300"
         />
         <div className="absolute inset-0 bg-architecture-charcoal/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
           <div className="px-6 py-2 border border-white text-white text-[10px] uppercase tracking-widest bg-black/20 backdrop-blur-sm">
@@ -102,7 +123,7 @@ const Portfolio: React.FC = () => {
   }, [selectedProject]);
 
   return (
-    <section id="portfolio" className="bg-architecture-offwhite py-32 md:py-64 relative overflow-hidden">
+    <section id="portfolio" className=" py-32 md:py-64 relative overflow-hidden">
       {/* Background Decorative Title */}
       <div className="absolute top-0 right-0 p-32 hidden lg:block opacity-[0.03] select-none pointer-events-none">
         <h2 className="text-[15rem] font-display font-black leading-none uppercase tracking-tighter rotate-90 origin-top-right">
@@ -142,7 +163,7 @@ const Portfolio: React.FC = () => {
             onClick={() => setSelectedProject(null)}
           />
 
-          <div 
+          <div
             className="relative w-full max-w-7xl max-h-[85vh] overflow-y-auto bg-architecture-offwhite p-6 md:p-12 lg:p-20 shadow-2xl gallery-modal scrollbar-hide"
             data-lenis-prevent
           >
@@ -150,7 +171,7 @@ const Portfolio: React.FC = () => {
             <div className="sticky top-0 right-0 z-[60] flex justify-end pb-4">
               <button
                 onClick={() => setSelectedProject(null)}
-                className="bg-architecture-offwhite/80 backdrop-blur-md p-4 rounded-full text-architecture-charcoal hover:text-architecture-gold transition-all duration-300 shadow-lg border border-architecture-gold/20"
+                className="backdrop-blur-md p-4 rounded-full text-architecture-charcoal hover:text-architecture-gold transition-all duration-300 shadow-lg border border-architecture-gold/20"
               >
                 <X size={24} />
               </button>
@@ -184,7 +205,7 @@ const Portfolio: React.FC = () => {
                       <img
                         src={img}
                         alt={`Related detail ${i + 1}`}
-                        className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                        className="w-full h-full object-cover transition-all duration-500"
                       />
                     </div>
                   ))}
