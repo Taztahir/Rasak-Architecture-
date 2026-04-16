@@ -49,8 +49,8 @@ const projects = [
     image: PortfolioImage9,
     relatedImages: [
       PortfolioImage10,
-      // PortfolioImage11,
-      // PortfolioImage12
+      // PortfolioImage14,
+      // PortfolioImage16
     ]
   },
   {
@@ -68,9 +68,9 @@ const projects = [
     title: "The Atrium Mall",
     image: PortfolioImage17,
     relatedImages: [
-      // PortfolioImage18,
+      PortfolioImage14,
       PortfolioImage19,
-      // PortfolioImage20
+      PortfolioImage16
     ]
   },
   {
