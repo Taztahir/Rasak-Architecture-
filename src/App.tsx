@@ -3,6 +3,7 @@ import { ReactLenis } from 'lenis/react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
+import VideoShowcase from './components/VideoShowcase';
 import Portfolio from './components/Portfolio';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -18,6 +19,7 @@ const App: React.FC = () => {
         <main>
           <Hero />
           <Services />
+          <VideoShowcase />
           <Portfolio />
           <Contact />
         </main>
