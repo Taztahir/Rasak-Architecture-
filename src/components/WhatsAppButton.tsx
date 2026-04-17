@@ -15,7 +15,7 @@ const WhatsAppButton: React.FC = () => {
       initial={{ opacity: 0, scale: 0.8, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ delay: 0.5, duration: 0.5 }}
-      className="fixed bottom-96 right-32 md:bottom-96 md:right-32 z-[60] group flex items-center justify-center w-14 h-14 bg-[#25D366] text-white transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-1"
+      className="fixed bottom-96 right-16 md:bottom-96 md:right-32 z-[60] group flex items-center justify-center w-14 h-14 bg-[#25D366] text-white transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-1"
       aria-label="Chat with us on WhatsApp"
     >
       {/* Technical Corner Accents */}

@@ -34,7 +34,7 @@ const ScrollToTop: React.FC = () => {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, y: 20 }}
           onClick={scrollToTop}
-          className="fixed bottom-32 right-32 z-50 group"
+          className="fixed bottom-32 right-16 md:bottom-32 md:right-32 z-50 group"
           aria-label="Scroll to top"
         >
           {/* Architectural Background Shape */}
