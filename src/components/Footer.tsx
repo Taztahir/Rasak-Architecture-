@@ -1,4 +1,4 @@
-import Logo from '../assets/Logo2.PNG';
+import Logo from '../assets/Logo.PNG';
 
 const SocialIcon = ({ d, size = 18 }: { d: string, size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
