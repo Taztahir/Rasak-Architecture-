@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-architecture-charcoal text-white py-48">
       <div className="section-container">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-24 space-y-5">
           <div className="md:col-span-2 space-y-5">
             <div className="flex items-center gap-4">
               <div>
