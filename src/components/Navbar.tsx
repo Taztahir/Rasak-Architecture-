@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Home, Briefcase, Image as ImageIcon, Phone } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Logo from '../assets/Logo2.png';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -51,45 +52,50 @@ const Navbar: React.FC = () => {
         className={`fixed top-0 left-0 w-full z-50 px-3 transition-all duration-500 ${isScrolled ? 'bg-white/90 backdrop-blur-md py-4 px-3 shadow-sm' : 'bg-transparent py-4'
           }`}
       >
-      <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
-        <div className="flex flex-col">
-          <span className="font-display text-2xl font-bold tracking-[0.2em] uppercase text-architecture-charcoal">
-            JR
-          </span>
-          <span className="text-[10px] tracking-[0.4em] uppercase text-architecture-gold -mt-1">
-            Design and Build
-          </span>
+        <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
+          <div className="flex items-center gap-4">
+            <div>
+              <img src={Logo} alt="" className="w-40 h-40" />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-display text-md font-bold tracking-[0.2em] uppercase text-architecture-charcoal">
+                JRDESIGNANDBUILD
+              </span>
+              {/* <span className="text-[10px] tracking-[0.4em] uppercase text-architecture-gold -mt-1">
+                Design and Build
+              </span> */}
+            </div>
+          </div>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex space-x-8 lg:space-x-16 items-center">
+            {navItems.filter(i => i.name !== 'Contact').map((item) => (
+              <a key={item.name} href={item.href} className="nav-link flex items-center gap-2 group">
+                <span className="text-architecture-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300">/</span>
+                {item.name}
+              </a>
+            ))}
+            <a href="#contact" className="btn-primary py-5 px-24 inline-block">Contact</a>
+          </div>
+
+          {/* Mobile Toggle */}
+          <button
+            className="md:hidden text-architecture-charcoal relative z-[60]"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-8 lg:space-x-16 items-center">
-          {navItems.filter(i => i.name !== 'Contact').map((item) => (
-            <a key={item.name} href={item.href} className="nav-link flex items-center gap-2 group">
-              <span className="text-architecture-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300">/</span>
-              {item.name}
-            </a>
-          ))}
-          <a href="#contact" className="btn-primary py-5 px-24 inline-block">Contact</a>
-        </div>
+        {/* Architectural Grid Line Accent */}
+        <div className={`h-[1px] bg-architecture-gold/20 absolute bottom-0 left-0 transition-all duration-700 ${isScrolled ? 'w-full' : 'w-0'}`} />
+      </nav>
 
-        {/* Mobile Toggle */}
-        <button
-          className="md:hidden text-architecture-charcoal relative z-[60]"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* Architectural Grid Line Accent */}
-      <div className={`h-[1px] bg-architecture-gold/20 absolute bottom-0 left-0 transition-all duration-700 ${isScrolled ? 'w-full' : 'w-0'}`} />
-    </nav>
-
-    {/* Mobile Side Drawer */}
-    <AnimatePresence>
-      {isMobileMenuOpen && (
-        <>
-          {/* Backdrop */}
+      {/* Mobile Side Drawer */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <>
+            {/* Backdrop */}
             <motion.div
               variants={backdropVariants}
               initial="closed"

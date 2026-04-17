@@ -8,19 +8,20 @@ import PortfolioImage5 from '../assets/Image5.jpeg'
 import PortfolioImage6 from '../assets/Image6.jpeg'
 import PortfolioImage7 from '../assets/Image7.jpeg'
 import PortfolioImage8 from '../assets/Image8.jpeg'
-import PortfolioImage9 from '../assets/Image9.jpeg'
-import PortfolioImage10 from '../assets/Image10.jpeg'
+import DocumentationImage from '../assets/Documentation1.jpeg'
+import DocumentationImage2 from '../assets/Documentation2.jpeg'
+import DocumentationImage3 from '../assets/Documentation3.jpeg'
+import ExteriorImage from '../assets/RENDER1.jpeg'
+import ExteriorImage2 from '../assets/RENDER2.jpeg'
+import ExteriorImage3 from '../assets/RENDER3.jpeg'
 import PortfolioImage11 from '../assets/Image11.jpeg'
 import PortfolioImage12 from '../assets/Image12.jpeg'
 import PortfolioImage13 from '../assets/Image13.jpeg'
-import PortfolioImage14 from '../assets/Image14.jpeg'
 import PortfolioImage15 from '../assets/Image15.jpeg'
-import PortfolioImage16 from '../assets/Image16.jpeg'
-import PortfolioImage17 from '../assets/Image17.jpeg'
-import PortfolioImage18 from '../assets/Image18.jpeg'
-import PortfolioImage19 from '../assets/Image19.jpeg'
-import PortfolioImage20 from '../assets/Image20.jpeg'
-import PortfolioImage21 from '../assets/Image21.jpeg'
+import ExteriorImage4 from '../assets/BUNGALOWSCENE1.jpeg'
+import ExteriorImage5 from '../assets/BUNGALOWSCENE2.jpeg'
+import ExteriorImage6 from '../assets/BUNGALOWSCENE3.jpeg'
+import ExteriorImage7 from '../assets/BUNGALOWSCENE4.jpeg'
 
 const projects = [
   {
@@ -46,9 +47,10 @@ const projects = [
   {
     id: 3,
     title: "Emerald Villa Interior",
-    image: PortfolioImage9,
+    image: DocumentationImage,
     relatedImages: [
-      PortfolioImage10,
+      DocumentationImage2,
+      DocumentationImage3,
       // PortfolioImage14,
       // PortfolioImage16
     ]
@@ -66,21 +68,21 @@ const projects = [
   {
     id: 5,
     title: "The Atrium Mall",
-    image: PortfolioImage17,
+    image: ExteriorImage,
     relatedImages: [
-      PortfolioImage14,
-      PortfolioImage19,
-      PortfolioImage16
+      ExteriorImage2,
+      ExteriorImage3,
+      // PortfolioImage16
     ]
   },
   {
     id: 6,
     title: "Oakwood Sustainable Home",
-    image: PortfolioImage21,
+    image: ExteriorImage4,
     relatedImages: [
-      PortfolioImage18,
-      // PortfolioImage19,
-      PortfolioImage20
+      ExteriorImage5,
+      ExteriorImage6,
+      ExteriorImage7
     ]
   },
 ];
