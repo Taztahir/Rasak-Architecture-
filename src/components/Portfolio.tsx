@@ -26,7 +26,7 @@ import ExteriorImage7 from '../assets/BUNGALOWSCENE4.jpeg'
 const projects = [
   {
     id: 1,
-    title: "Lumina Residential",
+    title: "",
     image: PortfolioImage,
     relatedImages: [
       PortfolioImage2,
@@ -36,7 +36,7 @@ const projects = [
   },
   {
     id: 2,
-    title: "Nexus Corporate Hub",
+    title: "",
     image: PortfolioImage5,
     relatedImages: [
       PortfolioImage6,

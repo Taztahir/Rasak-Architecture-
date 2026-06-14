@@ -49,16 +49,16 @@ const Navbar: React.FC = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 w-full z-50 px-3 transition-all duration-500 ${isScrolled ? 'bg-white/90 backdrop-blur-md py-4 px-3 shadow-sm' : 'bg-transparent py-4'
+        className={`fixed top-0 left-0 w-full z-50 px-3 transition-all duration-500 ${isScrolled ? 'bg-white/90 backdrop-blur-md py-4 px-3 shadow-sm text-architecture-charcoal' : 'bg-transparent py-4 text-white'
           }`}
       >
         <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
           <div className="flex items-center gap-4">
             <div>
-              <img src={Logo} alt="" className="w-40 h-40" />
+              <img src={Logo} alt="" className={`w-40 h-40 transition-all duration-500 ${isScrolled ? '' : ''}`} />
             </div>
             <div className="flex flex-col">
-              <span className="font-display text-md font-bold tracking-[0.2em] uppercase text-architecture-charcoal">
+              <span className={`font-display text-md font-bold tracking-[0.2em] uppercase transition-colors duration-500 ${isScrolled ? 'text-architecture-charcoal' : 'text-white'}`}>
                 JRDESIGNANDBUILD
               </span>
               {/* <span className="text-[10px] tracking-[0.4em] uppercase text-architecture-gold -mt-1">
@@ -80,7 +80,8 @@ const Navbar: React.FC = () => {
 
           {/* Mobile Toggle */}
           <button
-            className="md:hidden text-architecture-charcoal relative z-[60]"
+            className={`md:hidden relative z-[60] transition-colors duration-300 ${isMobileMenuOpen || isScrolled ? 'text-architecture-charcoal' : 'text-white'
+              }`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
