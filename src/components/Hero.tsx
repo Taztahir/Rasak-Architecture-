@@ -185,7 +185,7 @@ const Hero: React.FC = () => {
               {/* Title */}
               <motion.h1
                 variants={contentVariants}
-                className="text-3xl sm:text-6xl md:text-7xl leading-[1.0] font-black uppercase tracking-tighter mb-8 font-display"
+                className="text-4xl sm:text-6xl md:text-7xl leading-[1.0] font-black uppercase tracking-tighter mb-8 font-display"
               >
                 {slides[currentIndex].title}
               </motion.h1>

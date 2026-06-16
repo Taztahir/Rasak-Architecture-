@@ -22,6 +22,9 @@ const Navbar: React.FC = () => {
     } else {
       document.body.style.overflow = 'unset';
     }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
   }, [isMobileMenuOpen]);
 
   const navItems = [
@@ -29,6 +32,24 @@ const Navbar: React.FC = () => {
     { name: 'Services', href: '#services', icon: <Briefcase size={18} /> },
     { name: 'Portfolio', href: '#portfolio', icon: <ImageIcon size={18} /> },
     { name: 'Contact', href: '#contact', icon: <Phone size={18} /> },
+  ];
+
+  const socialLinks = [
+    {
+      name: 'TikTok',
+      href: 'https://www.tiktok.com/@jrdesignandbuild5?_r=1&_t=ZS-95YL6O7vI0a',
+      d: "M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"
+    },
+    {
+      name: 'X',
+      href: 'https://x.com/hardeybayur_jr?s=21',
+      d: "M4 4l11.733 16h4.267l-11.733 -16zm0 16l6.768-6.768m2.46-2.46L20 4"
+    },
+    {
+      name: 'Instagram',
+      href: 'https://www.instagram.com/abdulrasak05?igsh=MXU0eTZ4YmhpeWJueg%3D%3D&utm_source=qr',
+      d: "M2 6a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v12a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4z M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z M17.5 6.5h.01"
+    }
   ];
 
   const menuVariants: any = {
@@ -48,22 +69,48 @@ const Navbar: React.FC = () => {
 
   return (
     <>
+      {/* Topnav with Socials */}
+      <div
+        className={`fixed top-0 left-0 w-full z-50 bg-architecture-charcoal/95 border-b border-white/5 flex items-center justify-between px-8 md:px-12 transition-all duration-500 h-10 text-white ${isScrolled ? '-translate-y-full opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'
+          }`}
+      >
+        <div className="text-[9px] font-mono tracking-[0.25em] uppercase text-white/50">
+          Lagos, NG
+        </div>
+        <div className="flex items-center gap-4">
+          {socialLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/60 hover:text-architecture-gold transition-colors p-1"
+              title={link.name}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d={link.d} />
+              </svg>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      {/* Main Navbar */}
       <nav
-        className={`fixed top-0 left-0 w-full z-50 px-3 transition-all duration-500 ${isScrolled ? 'bg-white/90 backdrop-blur-md py-4 px-3 shadow-sm text-architecture-charcoal' : 'bg-transparent py-4 text-white'
+        className={`fixed left-0 w-full z-50 px-3 transition-all duration-500 ${isScrolled
+            ? 'top-0 bg-white/90 backdrop-blur-md py-4 px-3 shadow-sm text-architecture-charcoal'
+            : 'top-10 bg-transparent py-4 text-white'
           }`}
       >
         <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
           <div className="flex items-center gap-4">
             <div>
-              <img src={Logo} alt="" className={`w-40 h-40 transition-all duration-500 ${isScrolled ? '' : ''}`} />
+              <img src={Logo} alt="" className="w-40 h-40 transition-all duration-500" />
             </div>
             <div className="flex flex-col">
-              <span className={`font-display text-md font-bold tracking-[0.2em] uppercase transition-colors duration-500 ${isScrolled ? 'text-architecture-charcoal' : 'text-white'}`}>
+              <span className={`font-display text-sm font-bold tracking-[0.2em] uppercase transition-colors duration-500 ${isScrolled ? 'text-architecture-charcoal' : 'text-white'}`}>
                 JRDESIGNANDBUILD
               </span>
-              {/* <span className="text-[10px] tracking-[0.4em] uppercase text-architecture-gold -mt-1">
-                Design and Build
-              </span> */}
             </div>
           </div>
 

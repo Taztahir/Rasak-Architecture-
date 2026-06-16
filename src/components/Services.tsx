@@ -256,86 +256,71 @@ const Services: React.FC = () => {
               })}
             </div>
 
-            {/* Mobile Vertical Accordion */}
+            {/* Mobile: Always-open vertical cards */}
             <div className="lg:hidden flex flex-col w-full gap-4 mt-12">
-              {services.map((service, index) => {
-                const isActive = activeIndex === index;
-                return (
-                  <div
-                    key={service.title}
-                    onClick={() => setActiveIndex(index)}
-                    className={`relative w-full transition-all duration-500 ease-out overflow-hidden border border-architecture-silver/10 rounded-none bg-architecture-charcoal ${isActive ? 'h-[440px]' : 'h-[72px] cursor-pointer hover:bg-white/5'
-                      }`}
-                  >
-                    {/* Background Image */}
-                    <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
-                      <img
-                        src={service.image}
-                        alt=""
-                        className={`w-full h-full object-cover filter grayscale transition-all duration-[8000ms] ${isActive ? 'scale-108 opacity-35' : 'scale-100 opacity-15'
-                          }`}
-                      />
-                      <div className="absolute inset-0 bg-architecture-charcoal/85 z-10" />
+              {services.map((service, index) => (
+                <div
+                  key={service.title}
+                  className="relative w-full overflow-hidden border border-architecture-silver/10 bg-architecture-charcoal"
+                >
+                  {/* Background Image */}
+                  <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
+                    <img
+                      src={service.image}
+                      alt=""
+                      className="w-full h-full object-cover filter grayscale opacity-25"
+                    />
+                    <div className="absolute inset-0 bg-architecture-charcoal/85 z-10" />
+                  </div>
+
+                  {/* Content */}
+                  <div className="relative z-20 w-full flex flex-col justify-between p-6">
+                    {/* Header */}
+                    <div className="flex justify-between items-center w-full mb-6">
+                      <div className="flex items-center gap-4">
+                        <span className="text-architecture-gold font-display text-sm tracking-widest font-bold">
+                          {(index + 1).toString().padStart(2, '0')}
+                        </span>
+                        <div className="w-6 h-[1px] bg-architecture-gold/40" />
+                        <h3 className="text-sm font-display uppercase tracking-[0.2em] font-bold text-white">
+                          {service.title}
+                        </h3>
+                      </div>
+                      <div className="text-architecture-gold scale-75">
+                        {service.icon}
+                      </div>
                     </div>
 
-                    {/* Content Wrapper */}
-                    <div className="relative z-20 w-full h-full flex flex-col justify-between p-6">
-                      {/* Header */}
-                      <div className="flex justify-between items-center w-full">
-                        <div className="flex items-center gap-4">
-                          <span className="text-architecture-gold font-display text-sm tracking-widest font-bold">
-                            {(index + 1).toString().padStart(2, '0')}
+                    {/* Body — always visible */}
+                    <p className="text-sm text-white/70 leading-relaxed mb-6 font-sans">
+                      {service.description}
+                    </p>
+
+                    <div className="grid grid-cols-1 gap-2 mb-6">
+                      {service.features.map((feature, i) => (
+                        <div key={i} className="flex items-center gap-3">
+                          <div className="w-2 h-[2px] bg-architecture-gold" />
+                          <span className="text-[10px] uppercase tracking-widest text-white/50 font-bold font-display">
+                            {feature}
                           </span>
-                          <div className="w-6 h-[1px] bg-architecture-gold/40" />
-                          <h3 className="text-sm font-display uppercase tracking-[0.2em] font-bold text-white">
-                            {service.title}
-                          </h3>
                         </div>
-                        <div className="text-architecture-gold scale-75">
-                          {service.icon}
-                        </div>
-                      </div>
+                      ))}
+                    </div>
 
-                      {/* Expanded body content */}
-                      {isActive && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.4 }}
-                          className="flex-grow flex flex-col justify-between mt-6"
-                        >
-                          <p className="text-sm text-white/70 leading-relaxed mb-6 font-sans">
-                            {service.description}
-                          </p>
-
-                          <div className="grid grid-cols-1 gap-2 mb-6">
-                            {service.features.map((feature, i) => (
-                              <div key={i} className="flex items-center gap-3">
-                                <div className="w-2 h-[2px] bg-architecture-gold" />
-                                <span className="text-[10px] uppercase tracking-widest text-white/50 font-bold font-display">
-                                  {feature}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
-
-                          <div className="flex justify-between items-center w-full border-t border-white/10 pt-4 mt-auto">
-                            <a
-                              href="#contact"
-                              className="text-[10px] uppercase tracking-[0.3em] text-architecture-gold hover:text-white transition-colors font-bold flex items-center gap-2"
-                            >
-                              Start Project <ArrowRight size={12} />
-                            </a>
-                            <span className="text-[8px] text-white/30 uppercase tracking-[0.2em]">
-                              JR DESIGN & BUILD
-                            </span>
-                          </div>
-                        </motion.div>
-                      )}
+                    <div className="flex justify-between items-center w-full border-t border-white/10 pt-4">
+                      <a
+                        href="#contact"
+                        className="text-[10px] uppercase tracking-[0.3em] text-architecture-gold hover:text-white transition-colors font-bold flex items-center gap-2"
+                      >
+                        Start Project <ArrowRight size={12} />
+                      </a>
+                      <span className="text-[8px] text-white/30 uppercase tracking-[0.2em]">
+                        JR DESIGN &amp; BUILD
+                      </span>
                     </div>
                   </div>
-                );
-              })}
+                </div>
+              ))}
             </div>
           </>
         )}

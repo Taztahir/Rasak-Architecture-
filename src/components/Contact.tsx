@@ -69,35 +69,73 @@ const Contact: React.FC = () => {
           {/* Contact Form Area (Webflow Grid) */}
           <div className="lg:col-span-7">
             <div className="glass-card bg-white border-architecture-silver/10 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] p-12 md:p-48">
-              <form className="space-y-12">
+              <form
+                action="https://formsubmit.co/Hardeybayurjnr31@gmail.com"
+                method="POST"
+                className="space-y-12"
+              >
+                {/* FormSubmit hidden config fields */}
+                <input type="hidden" name="_subject" value="New Project Enquiry — JR Design and Build" />
+                <input type="hidden" name="_next" value={window.location.href} />
+                <input type="hidden" name="_captcha" value="false" />
+                {/* Honeypot anti-spam field */}
+                <input type="text" name="_honey" style={{ display: 'none' }} />
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                   <div className="group relative">
-                    <input type="text" className="w-full bg-transparent border-b-2 border-architecture-silver/10 py-4 focus:border-architecture-gold outline-none transition-colors peer placeholder-transparent" id="name" placeholder="Name" />
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      className="w-full bg-transparent border-b-2 border-architecture-silver/10 py-4 focus:border-architecture-gold outline-none transition-colors peer placeholder-transparent"
+                      id="name"
+                      placeholder="Name"
+                    />
                     <label htmlFor="name" className="absolute left-0 top-0 text-[10px] uppercase tracking-widest text-architecture-charcoal/40 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-xs peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-architecture-gold pointer-events-none font-bold">Full Name</label>
                   </div>
                   <div className="group relative">
-                    <input type="email" className="w-full bg-transparent border-b-2 border-architecture-silver/10 py-4 focus:border-architecture-gold outline-none transition-colors peer placeholder-transparent" id="email" placeholder="Email" />
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      className="w-full bg-transparent border-b-2 border-architecture-silver/10 py-4 focus:border-architecture-gold outline-none transition-colors peer placeholder-transparent"
+                      id="email"
+                      placeholder="Email"
+                    />
                     <label htmlFor="email" className="absolute left-0 top-0 text-[10px] uppercase tracking-widest text-architecture-charcoal/40 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-xs peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-architecture-gold pointer-events-none font-bold">Email Address</label>
                   </div>
                 </div>
 
                 <div className="space-y-4">
-                  <label className="text-[10px] uppercase tracking-[0.3em] text-architecture-charcoal/40 font-bold">Service Category</label>
-                  <div className="flex flex-wrap gap-4">
+                  <label htmlFor="service" className="text-[10px] uppercase tracking-[0.3em] text-architecture-charcoal/40 font-bold">Service Category</label>
+                  <select
+                    id="service"
+                    name="service"
+                    className="w-full bg-transparent border-b-2 border-architecture-silver/10 py-4 focus:border-architecture-gold outline-none transition-colors text-sm text-architecture-charcoal cursor-pointer appearance-none"
+                  >
+                    <option value="" disabled>Select a service…</option>
                     {["Design", "Construction", "Interior", "Land Docs"].map(opt => (
-                      <button key={opt} type="button" className="px-16 py-8 border border-architecture-silver/10 text-[10px] uppercase tracking-widest hover:border-architecture-gold hover:text-architecture-gold transition-all">
-                        {opt}
-                      </button>
+                      <option key={opt} value={opt}>{opt}</option>
                     ))}
-                  </div>
+                  </select>
                 </div>
 
                 <div className="group relative">
-                  <textarea rows={4} className="w-full bg-transparent border-b-2 border-architecture-silver/10 py-4 focus:border-architecture-gold outline-none transition-colors peer placeholder-transparent resize-none" id="msg" placeholder="Message"></textarea>
+                  <textarea
+                    rows={4}
+                    name="message"
+                    required
+                    className="w-full bg-transparent border-b-2 border-architecture-silver/10 py-4 focus:border-architecture-gold outline-none transition-colors peer placeholder-transparent resize-none"
+                    id="msg"
+                    placeholder="Message"
+                  />
                   <label htmlFor="msg" className="absolute left-0 top-0 text-[10px] uppercase tracking-widest text-architecture-charcoal/40 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-xs peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-architecture-gold pointer-events-none font-bold">Message Details</label>
                 </div>
 
-                <button className="w-full bg-architecture-charcoal text-white p-5 uppercase text-xs tracking-[0.5em] font-bold hover:bg-architecture-gold transition-all flex items-center justify-center gap-6 group">
+                <button
+                  type="submit"
+                  className="w-full bg-architecture-charcoal text-white p-5 uppercase text-xs tracking-[0.5em] font-bold hover:bg-architecture-gold transition-all flex items-center justify-center gap-6 group"
+                >
                   Submit Proposal <Send size={14} className="group-hover:translate-x-2 transition-transform" />
                 </button>
               </form>

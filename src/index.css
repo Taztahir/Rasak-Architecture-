@@ -47,7 +47,12 @@
     width: 100%;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-display tracking-tight font-bold;
   }
 }
@@ -82,8 +87,13 @@
 
 /* Custom Architecture Vibe animations */
 @keyframes technicalLine {
-  0% { width: 0; }
-  100% { width: 100%; }
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%;
+  }
 }
 
 .animate-line {

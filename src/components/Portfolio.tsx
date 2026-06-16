@@ -1,222 +1,166 @@
-import React, { useState, useEffect } from 'react';
-import { X } from 'lucide-react';
-import PortfolioImage from '../assets/Image1.jpeg'
-import PortfolioImage2 from '../assets/Image2.jpeg'
-import PortfolioImage3 from '../assets/Image3.jpeg'
-import PortfolioImage4 from '../assets/Image4.jpeg'
-import PortfolioImage5 from '../assets/Image5.jpeg'
-import PortfolioImage6 from '../assets/Image6.jpeg'
-import PortfolioImage7 from '../assets/Image7.jpeg'
-import PortfolioImage8 from '../assets/Image8.jpeg'
-import DocumentationImage from '../assets/Documentation1.jpeg'
-import DocumentationImage2 from '../assets/Documentation2.jpeg'
-import DocumentationImage3 from '../assets/Documentation3.jpeg'
-import ExteriorImage from '../assets/RENDER1.jpeg'
-import ExteriorImage2 from '../assets/RENDER2.jpeg'
-import ExteriorImage3 from '../assets/RENDER3.jpeg'
-import PortfolioImage11 from '../assets/Image11.jpeg'
-import PortfolioImage12 from '../assets/Image12.jpeg'
-import PortfolioImage13 from '../assets/Image13.jpeg'
-import PortfolioImage15 from '../assets/Image15.jpeg'
-import ExteriorImage4 from '../assets/BUNGALOWSCENE1.jpeg'
-import ExteriorImage5 from '../assets/BUNGALOWSCENE2.jpeg'
-import ExteriorImage6 from '../assets/BUNGALOWSCENE3.jpeg'
-import ExteriorImage7 from '../assets/BUNGALOWSCENE4.jpeg'
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 
-const projects = [
-  {
-    id: 1,
-    title: "",
-    image: PortfolioImage,
-    relatedImages: [
-      PortfolioImage2,
-      PortfolioImage3,
-      PortfolioImage4
-    ]
-  },
-  {
-    id: 2,
-    title: "",
-    image: PortfolioImage5,
-    relatedImages: [
-      PortfolioImage6,
-      PortfolioImage7,
-      PortfolioImage8
-    ]
-  },
-  {
-    id: 3,
-    title: "Emerald Villa Interior",
-    image: DocumentationImage,
-    relatedImages: [
-      DocumentationImage2,
-      DocumentationImage3,
-      // PortfolioImage14,
-      // PortfolioImage16
-    ]
-  },
-  {
-    id: 4,
-    title: "Skyline Manor",
-    image: PortfolioImage13,
-    relatedImages: [
-      PortfolioImage11,
-      PortfolioImage15,
-      PortfolioImage12
-    ]
-  },
-  {
-    id: 5,
-    title: "The Atrium Mall",
-    image: ExteriorImage,
-    relatedImages: [
-      ExteriorImage2,
-      ExteriorImage3,
-      // PortfolioImage16
-    ]
-  },
-  {
-    id: 6,
-    title: "Oakwood Sustainable Home",
-    image: ExteriorImage4,
-    relatedImages: [
-      ExteriorImage5,
-      ExteriorImage6,
-      ExteriorImage7
-    ]
-  },
+import PortfolioImage from '../assets/Image1.jpeg';
+import PortfolioImage2 from '../assets/Image2.jpeg';
+import PortfolioImage3 from '../assets/Image3.jpeg';
+import PortfolioImage4 from '../assets/Image4.jpeg';
+import PortfolioImage5 from '../assets/Image5.jpeg';
+import PortfolioImage6 from '../assets/Image6.jpeg';
+import PortfolioImage7 from '../assets/Image7.jpeg';
+import PortfolioImage8 from '../assets/Image8.jpeg';
+import DocumentationImage from '../assets/Documentation1.jpeg';
+import DocumentationImage2 from '../assets/Documentation2.jpeg';
+import DocumentationImage3 from '../assets/Documentation3.jpeg';
+import ExteriorImage from '../assets/RENDER1.jpeg';
+import ExteriorImage2 from '../assets/RENDER2.jpeg';
+import ExteriorImage3 from '../assets/RENDER3.jpeg';
+import PortfolioImage11 from '../assets/Image11.jpeg';
+import PortfolioImage12 from '../assets/Image12.jpeg';
+import PortfolioImage13 from '../assets/Image13.jpeg';
+import PortfolioImage15 from '../assets/Image15.jpeg';
+import ExteriorImage4 from '../assets/BUNGALOWSCENE1.jpeg';
+import ExteriorImage5 from '../assets/BUNGALOWSCENE2.jpeg';
+import ExteriorImage6 from '../assets/BUNGALOWSCENE3.jpeg';
+import ExteriorImage7 from '../assets/BUNGALOWSCENE4.jpeg';
+
+interface Project {
+  id: number;
+  gallery: string[];
+}
+
+const projects: Project[] = [
+  { id: 1, gallery: [PortfolioImage, PortfolioImage2, PortfolioImage3, PortfolioImage4] },
+  { id: 2, gallery: [PortfolioImage5, PortfolioImage6, PortfolioImage7, PortfolioImage8] },
+  { id: 3, gallery: [DocumentationImage, DocumentationImage2, DocumentationImage3] },
+  { id: 4, gallery: [PortfolioImage13, PortfolioImage11, PortfolioImage15, PortfolioImage12] },
+  { id: 5, gallery: [ExteriorImage, ExteriorImage2, ExteriorImage3] },
+  { id: 6, gallery: [ExteriorImage4, ExteriorImage5, ExteriorImage6, ExteriorImage7] },
 ];
 
-const PortfolioItem = ({ project, onOpen }: { project: any, onOpen: (p: any) => void }) => {
+// ── Modal Lightbox ───────────────────────────────────────────────────────────
+const Modal: React.FC<{ project: Project; onClose: () => void }> = ({ project, onClose }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const nextImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setActiveIndex((prev) => (prev + 1) % project.gallery.length);
+  };
+
+  const prevImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setActiveIndex((prev) => (prev - 1 + project.gallery.length) % project.gallery.length);
+  };
+
   return (
-    <div
-      className="relative group cursor-pointer overflow-hidden"
-      onClick={() => onOpen(project)}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={onClose}
+      className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-sm flex flex-col items-center justify-center p-4 md:p-12 select-none"
     >
-      <div className="aspect-[4/5] w-full">
+      {/* Close Button */}
+      <button
+        onClick={onClose}
+        className="absolute top-6 right-6 text-white/60 hover:text-white transition-colors z-[210]"
+        aria-label="Close modal"
+      >
+        <X size={24} strokeWidth={1.5} />
+      </button>
+
+      {/* Main Image Container */}
+      <div className="relative w-full max-w-5xl h-[70vh] flex items-center justify-center">
         <img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-full object-cover transition-all duration-300"
+          src={project.gallery[activeIndex]}
+          alt=""
+          className="max-w-full max-h-full object-contain pointer-events-none"
         />
-        <div className="absolute inset-0 bg-architecture-charcoal/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-          <div className="px-6 py-2 border border-white text-white text-[10px] uppercase tracking-widest bg-black/20 backdrop-blur-sm">
-            View Project
-          </div>
-        </div>
+
+        {/* Navigation Controls */}
+        {project.gallery.length > 1 && (
+          <>
+            <button
+              onClick={prevImage}
+              className="absolute left-0 p-3 text-white/50 hover:text-white transition-colors"
+              aria-label="Previous image"
+            >
+              <ChevronLeft size={32} strokeWidth={1.5} />
+            </button>
+            <button
+              onClick={nextImage}
+              className="absolute right-0 p-3 text-white/50 hover:text-white transition-colors"
+              aria-label="Next image"
+            >
+              <ChevronRight size={32} strokeWidth={1.5} />
+            </button>
+          </>
+        )}
       </div>
-    </div>
+
+      {/* Mini Thumbnails Strip */}
+      {project.gallery.length > 1 && (
+        <div
+          className="flex gap-2 mt-8 overflow-x-auto max-w-full px-4 scrollbar-none"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {project.gallery.map((img, idx) => (
+            <button
+              key={idx}
+              onClick={() => setActiveIndex(idx)}
+              className={`w-14 h-14 flex-shrink-0 transition-all duration-200 ${idx === activeIndex ? 'opacity-100 ring-1 ring-white' : 'opacity-40 hover:opacity-70'
+                }`}
+            >
+              <img src={img} alt="" className="w-full h-full object-cover" />
+            </button>
+          ))}
+        </div>
+      )}
+    </motion.div>
   );
 };
 
+// ── Portfolio Grid ───────────────────────────────────────────────────────────
 const Portfolio: React.FC = () => {
-  const [selectedProject, setSelectedProject] = useState<any>(null);
-
-  // Lock body scroll when modal is open
-  useEffect(() => {
-    if (selectedProject) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [selectedProject]);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <section id="portfolio" className=" py-32 md:py-64 relative overflow-hidden">
-      {/* Background Decorative Title */}
-      <div className="absolute top-0 right-0 p-32 hidden lg:block opacity-[0.03] select-none pointer-events-none">
-        <h2 className="text-[15rem] font-display font-black leading-none uppercase tracking-tighter rotate-90 origin-top-right">
-          Portfolio
-        </h2>
-      </div>
-
-      <div className="section-container relative z-10">
-        <div className="mb-24 md:mb-48 border-l-8 border-architecture-gold pl-8 md:pl-16">
-          <span className="text-architecture-gold font-display font-medium tracking-[0.4em] uppercase text-[10px] md:text-xs mb-2 md:mb-4 block">Selected Works</span>
-          <h2 className="text-4xl md:text-7xl lg:text-[6rem] leading-[0.9] font-black uppercase tracking-tighter">
-            Architectural <br />
-            <span className="italic font-light font-display lowercase opacity-50">Impact</span>
-          </h2>
+    <section id='portfolio' className="bg-white py-16 md:py-24">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className='justify-center items-center py-16'>
+          <h2 className='text-center text-3xl md:text-4xl font-playfair font-semibold text-stone-900 mb-12 animate-fade-in'>OUR PORTFOLIO</h2>
         </div>
 
-        {/* Stable Grid (Graph) Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+        {/* Gallery Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {projects.map((project) => (
-            <PortfolioItem key={project.id} project={project} onOpen={setSelectedProject} />
+            <div
+              key={project.id}
+              onClick={() => setSelectedProject(project)}
+              className="group relative aspect-[4/3] bg-neutral-100 overflow-hidden cursor-pointer"
+            >
+              <img
+                src={project.gallery[0]}
+                alt=""
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+              />
+              {/* Subtle hover fade-in overlay */}
+              <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </div>
           ))}
         </div>
-
-        <div className="mt-24 md:mt-48 flex flex-col items-center">
-          <div className="w-[1px] h-16 md:h-32 bg-architecture-gold/30 mb-8" />
-          <button className="text-xs md:text-sm uppercase tracking-[0.4em] font-bold text-architecture-charcoal/40 hover:text-architecture-gold transition-colors">
-            Load Master Archive
-          </button>
-        </div>
       </div>
 
-      {/* Static Modal (No Animation) */}
-      {selectedProject && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 lg:p-24 bg-architecture-charcoal/90 backdrop-blur-md">
-          <div
-            className="absolute inset-0 cursor-pointer"
-            onClick={() => setSelectedProject(null)}
+      {/* Lightbox Rendering */}
+      <AnimatePresence>
+        {selectedProject && (
+          <Modal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
           />
-
-          <div
-            className="relative w-full max-w-7xl max-h-[85vh] overflow-y-auto bg-architecture-offwhite p-6 md:p-12 lg:p-20 shadow-2xl gallery-modal scrollbar-hide"
-            data-lenis-prevent
-          >
-            {/* Sticky Close Button */}
-            <div className="sticky top-0 right-0 z-[60] flex justify-end pb-4">
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="backdrop-blur-md p-4 rounded-full text-architecture-charcoal hover:text-architecture-gold transition-all duration-300 shadow-lg border border-architecture-gold/20"
-              >
-                <X size={24} />
-              </button>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
-              {/* Main Image */}
-              <div className="lg:col-span-7">
-                <div className="aspect-[4/5] w-full overflow-hidden shadow-lg">
-                  <img
-                    src={selectedProject.image}
-                    alt={selectedProject.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-
-              {/* Related Images Sidebar */}
-              <div className="lg:col-span-5 flex flex-col">
-                <div className="mb-12">
-                  <div className="text-[10px] text-architecture-gold font-bold uppercase tracking-[0.4em] mb-4">Project detail</div>
-                  <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none mb-6">
-                    {selectedProject.title}
-                  </h3>
-                  <div className="w-16 h-[2px] bg-architecture-gold" />
-                </div>
-
-                <div className="grid grid-cols-1 gap-8 md:gap-12">
-                  {selectedProject.relatedImages.map((img: string, i: number) => (
-                    <div key={i} className="aspect-[16/9] w-full overflow-hidden bg-architecture-silver/10 shadow-md">
-                      <img
-                        src={img}
-                        alt={`Related detail ${i + 1}`}
-                        className="w-full h-full object-cover transition-all duration-500"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+        )}
+      </AnimatePresence>
     </section>
   );
 };
