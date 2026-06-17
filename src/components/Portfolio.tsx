@@ -20,10 +20,10 @@ import PortfolioImage11 from '../assets/Image11.jpeg';
 import PortfolioImage12 from '../assets/Image12.jpeg';
 import PortfolioImage13 from '../assets/Image13.jpeg';
 import PortfolioImage15 from '../assets/Image15.jpeg';
-import ExteriorImage4 from '../assets/BUNGALOWSCENE1.jpeg';
-import ExteriorImage5 from '../assets/BUNGALOWSCENE2.jpeg';
-import ExteriorImage6 from '../assets/BUNGALOWSCENE3.jpeg';
-import ExteriorImage7 from '../assets/BUNGALOWSCENE4.jpeg';
+import DrawingImage1 from '../assets/Drawing.png';
+import DrawingImage2 from '../assets/Drawing2.png';
+import DrawingImage3 from '../assets/Drawing3.png';
+import DrawingImage4 from '../assets/Drawing4.png';
 
 interface Project {
   id: number;
@@ -36,7 +36,7 @@ const projects: Project[] = [
   { id: 3, gallery: [DocumentationImage, DocumentationImage2, DocumentationImage3] },
   { id: 4, gallery: [PortfolioImage13, PortfolioImage11, PortfolioImage15, PortfolioImage12] },
   { id: 5, gallery: [ExteriorImage, ExteriorImage2, ExteriorImage3] },
-  { id: 6, gallery: [ExteriorImage4, ExteriorImage5, ExteriorImage6, ExteriorImage7] },
+  { id: 6, gallery: [DrawingImage1, DrawingImage2, DrawingImage3, DrawingImage4] },
 ];
 
 // ── Modal Lightbox ───────────────────────────────────────────────────────────
