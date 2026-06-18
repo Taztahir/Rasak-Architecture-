@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X, Play } from 'lucide-react';
 
 import PortfolioImage from '../assets/Image1.jpeg';
 import PortfolioImage2 from '../assets/Image2.jpeg';
@@ -16,41 +16,53 @@ import DocumentationImage3 from '../assets/Documentation3.jpeg';
 import ExteriorImage from '../assets/RENDER1.jpeg';
 import ExteriorImage2 from '../assets/RENDER2.jpeg';
 import ExteriorImage3 from '../assets/RENDER3.jpeg';
-import PortfolioImage11 from '../assets/Image11.jpeg';
-import PortfolioImage12 from '../assets/Image12.jpeg';
-import PortfolioImage13 from '../assets/Image13.jpeg';
-import PortfolioImage15 from '../assets/Image15.jpeg';
-import DrawingImage1 from '../assets/Drawing.png';
-import DrawingImage2 from '../assets/Drawing2.png';
-import DrawingImage3 from '../assets/Drawing3.png';
-import DrawingImage4 from '../assets/Drawing4.png';
+
+// Import your video files here (replace with your actual video paths)
+import ProjectVideo4 from '../assets/Videoatsite.mp4';
+import ProjectVideo6 from '../assets/Videoatwork.mp4';
+
+// // Optional: Custom thumbnail images to display on the portfolio grid for videos
+// import Video4Thumbnail from '../assets/video4-thumb.jpeg';
+// import Video6Thumbnail from '../assets/video6-thumb.jpeg';
 
 interface Project {
   id: number;
+  type: 'image' | 'video';
   gallery: string[];
+  thumbnail?: string; // Optional custom thumbnail for video grid display
 }
 
 const projects: Project[] = [
-  { id: 1, gallery: [PortfolioImage, PortfolioImage2, PortfolioImage3, PortfolioImage4] },
-  { id: 2, gallery: [PortfolioImage5, PortfolioImage6, PortfolioImage7, PortfolioImage8] },
-  { id: 3, gallery: [DocumentationImage, DocumentationImage2, DocumentationImage3] },
-  { id: 4, gallery: [PortfolioImage13, PortfolioImage11, PortfolioImage15, PortfolioImage12] },
-  { id: 5, gallery: [ExteriorImage, ExteriorImage2, ExteriorImage3] },
-  { id: 6, gallery: [DrawingImage1, DrawingImage2, DrawingImage3, DrawingImage4] },
+  { id: 1, type: 'image', gallery: [PortfolioImage, PortfolioImage2, PortfolioImage3, PortfolioImage4] },
+  { id: 2, type: 'image', gallery: [PortfolioImage5, PortfolioImage6, PortfolioImage7, PortfolioImage8] },
+  { id: 3, type: 'image', gallery: [DocumentationImage, DocumentationImage2, DocumentationImage3] },
+  {
+    id: 4,
+    type: 'video',
+    gallery: [ProjectVideo4],
+    // thumbnail: Video4Thumbnail // Grid cover image
+  },
+  { id: 5, type: 'image', gallery: [ExteriorImage, ExteriorImage2, ExteriorImage3] },
+  {
+    id: 6,
+    type: 'video',
+    gallery: [ProjectVideo6],
+    // thumbnail: Video6Thumbnail // Grid cover image
+  },
 ];
 
 // ── Modal Lightbox ───────────────────────────────────────────────────────────
 const Modal: React.FC<{ project: Project; onClose: () => void }> = ({ project, onClose }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, useStateActiveIndex] = useState(0);
 
   const nextImage = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setActiveIndex((prev) => (prev + 1) % project.gallery.length);
+    useStateActiveIndex((prev) => (prev + 1) % project.gallery.length);
   };
 
   const prevImage = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setActiveIndex((prev) => (prev - 1 + project.gallery.length) % project.gallery.length);
+    useStateActiveIndex((prev) => (prev - 1 + project.gallery.length) % project.gallery.length);
   };
 
   return (
@@ -70,28 +82,38 @@ const Modal: React.FC<{ project: Project; onClose: () => void }> = ({ project, o
         <X size={24} strokeWidth={1.5} />
       </button>
 
-      {/* Main Image Container */}
+      {/* Main Content Container */}
       <div className="relative w-full max-w-5xl h-[70vh] flex items-center justify-center">
-        <img
-          src={project.gallery[activeIndex]}
-          alt=""
-          className="max-w-full max-h-full object-contain pointer-events-none"
-        />
+        {project.type === 'video' ? (
+          <video
+            src={project.gallery[activeIndex]}
+            controls
+            autoPlay
+            className="max-w-full max-h-full object-contain"
+            onClick={(e) => e.stopPropagation()} // Keeps video layout clicks from closing modal
+          />
+        ) : (
+          <img
+            src={project.gallery[activeIndex]}
+            alt=""
+            className="max-w-full max-h-full object-contain pointer-events-none"
+          />
+        )}
 
-        {/* Navigation Controls */}
+        {/* Navigation Controls (Only shows if there's more than 1 item) */}
         {project.gallery.length > 1 && (
           <>
             <button
               onClick={prevImage}
               className="absolute left-0 p-3 text-white/50 hover:text-white transition-colors"
-              aria-label="Previous image"
+              aria-label="Previous item"
             >
               <ChevronLeft size={32} strokeWidth={1.5} />
             </button>
             <button
               onClick={nextImage}
               className="absolute right-0 p-3 text-white/50 hover:text-white transition-colors"
-              aria-label="Next image"
+              aria-label="Next item"
             >
               <ChevronRight size={32} strokeWidth={1.5} />
             </button>
@@ -108,7 +130,7 @@ const Modal: React.FC<{ project: Project; onClose: () => void }> = ({ project, o
           {project.gallery.map((img, idx) => (
             <button
               key={idx}
-              onClick={() => setActiveIndex(idx)}
+              onClick={() => useStateActiveIndex(idx)}
               className={`w-14 h-14 flex-shrink-0 transition-all duration-200 ${idx === activeIndex ? 'opacity-100 ring-1 ring-white' : 'opacity-40 hover:opacity-70'
                 }`}
             >
@@ -126,39 +148,62 @@ const Portfolio: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <section id='portfolio' className="bg-white py-16 md:py-24">
+    <section id="portfolio" className="bg-white py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className='justify-center items-center py-16'>
-          <h2 className='text-center text-3xl md:text-4xl font-playfair font-semibold text-stone-900 mb-12 animate-fade-in'>OUR PORTFOLIO</h2>
+        <div className="justify-center items-center py-16">
+          <h2 className="text-center text-3xl md:text-4xl font-playfair font-semibold text-stone-900 mb-12 animate-fade-in">
+            OUR PORTFOLIO
+          </h2>
         </div>
 
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {projects.map((project) => (
-            <div
-              key={project.id}
-              onClick={() => setSelectedProject(project)}
-              className="group relative aspect-[4/3] bg-neutral-100 overflow-hidden cursor-pointer"
-            >
-              <img
-                src={project.gallery[0]}
-                alt=""
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-              />
-              {/* Subtle hover fade-in overlay */}
-              <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </div>
-          ))}
+          {projects.map((project) => {
+            const coverSrc = project.type === 'video' ? (project.thumbnail || project.gallery[0]) : project.gallery[0];
+
+            return (
+              <div
+                key={project.id}
+                onClick={() => setSelectedProject(project)}
+                className="group relative aspect-[4/3] bg-neutral-100 overflow-hidden cursor-pointer"
+              >
+                {/* Fallback frame configuration if video has no thumbnail image */}
+                {project.type === 'video' && !project.thumbnail ? (
+                  <video
+                    src={coverSrc}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                    muted
+                    playsInline
+                  />
+                ) : (
+                  <img
+                    src={coverSrc}
+                    alt=""
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                  />
+                )}
+
+                {/* Play Button Indicator over video grids */}
+                {project.type === 'video' && (
+                  <div className="absolute inset-0 flex items-center justify-center z-10">
+                    <div className="bg-black/40 backdrop-blur-sm p-4 rounded-full text-white opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300">
+                      <Play size={24} fill="currentColor" />
+                    </div>
+                  </div>
+                )}
+
+                {/* Darken fade effect on hover */}
+                <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+            );
+          })}
         </div>
       </div>
 
       {/* Lightbox Rendering */}
       <AnimatePresence>
         {selectedProject && (
-          <Modal
-            project={selectedProject}
-            onClose={() => setSelectedProject(null)}
-          />
+          <Modal project={selectedProject} onClose={() => setSelectedProject(null)} />
         )}
       </AnimatePresence>
     </section>
