@@ -22,8 +22,8 @@ import ProjectVideo4 from '../assets/Videoatsite.mp4';
 import ProjectVideo6 from '../assets/Videoatwork.mp4';
 
 // // Optional: Custom thumbnail images to display on the portfolio grid for videos
-// import Video4Thumbnail from '../assets/video4-thumb.jpeg';
-// import Video6Thumbnail from '../assets/video6-thumb.jpeg';
+import Video4Thumbnail from '../assets/VideoThumbnail.jpeg';
+import Video6Thumbnail from '../assets/VideoThumbnail2.jpeg';
 
 interface Project {
   id: number;
@@ -40,14 +40,14 @@ const projects: Project[] = [
     id: 4,
     type: 'video',
     gallery: [ProjectVideo4],
-    // thumbnail: Video4Thumbnail // Grid cover image
+    thumbnail: Video4Thumbnail // Grid cover image
   },
   { id: 5, type: 'image', gallery: [ExteriorImage, ExteriorImage2, ExteriorImage3] },
   {
     id: 6,
     type: 'video',
     gallery: [ProjectVideo6],
-    // thumbnail: Video6Thumbnail // Grid cover image
+    thumbnail: Video6Thumbnail // Grid cover image
   },
 ];
 
